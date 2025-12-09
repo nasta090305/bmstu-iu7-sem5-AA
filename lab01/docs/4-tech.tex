@@ -1,0 +1,70 @@
+\chapter{Технологический раздел}\label{ch:tech}
+
+\section{Средства реализации}
+
+Для реализации данной лабораторной был выбран язык Python, как простой язык с широким функционалом, содержащий все необходимые для работы инструменты и позволяющий завершить этап кодирования в кратчайшие сроки.
+Для замеров времени используется функция process\_time() из модуля time(), возвращающая процессорное время.
+
+\section{Программные модули}
+
+Программа разбита на следующие модули:
+
+\begin{itemize}
+    \item \textbf{main.py} --- модуль, реализующий пользовательский интерфейс. Вызывает функции алгоритмов
+    \item \textbf{funcs.py} --- модуль содержит функции поиска расстояния Левенштейна и Дамерау--Левенштейна. Функции итеративных алгоритмов с выводом матрицы работы вызываются в main.py, функции без вывода используются для замеров времени работы алгоритмов.
+    \item \textbf{tests.py} --- модуль для проведения функционального тестирования.
+    \item \textbf{time\_mes.py} --- модуль, реализующий замеры времени.
+    \item \textbf{graph.py} --- модуль для графического отображения полученных замеров времени.
+\end{itemize}
+
+\section{Реализация алгоритмов}
+
+В результате разработки алгоритмов были получены листинги \ref{lst:matrix_levenshtein.py} --- \ref{lsr:damerau-levenshtein.py}
+
+\clearpage
+
+\includelisting
+    {matrix_levenshtein.py} % Имя файла с расширением (файл должен быть расположен в директории inc/lst/)
+    {Исходный код итеративного алгоритма вычисления расстояния Левенштейна} % Подпись листинга
+
+\clearpage
+
+\includelisting
+    {recurs_levenshtein.py}
+    {Исходный код рекурсивного алгоритма вычисления расстояния Левенштейна}
+
+\clearpage
+
+\includelisting
+    {memo_recurs_levenshtein.py}
+    {Исходный код рекурсивного с мемоизацией алгоритма вычисления расстояния Левенштейна}
+
+\clearpage
+
+\includelisting
+    {damerau_levenshtein.py}
+    {Исходный код итеративного алгоритма вычисления расстояния Дамерау--Левенштейна}
+
+\clearpage
+
+\section{Функциональные тесты}
+
+Функциональные тесты приведены в таблице \ref{table:tests} и были пройдены успешно.
+
+\begin{table}[h]
+\caption{Функциональные тесты}
+\label{table:tests}
+\begin{tabular}{|cc|cccc|}
+\hline
+\multicolumn{2}{|c|}{\textbf{Входные данные}} & \multicolumn{4}{c|}{\textbf{Полученное расстояние}} \\ \hline
+\multicolumn{1}{|c|}{\multirow{2}{*}{\textbf{Строка 1}}} & \multirow{2}{*}{\textbf{Строка 2}} & \multicolumn{3}{c|}{\textbf{Левенштейн}} & \multirow{2}{*}{\textbf{\begin{tabular}[c]{@{}c@{}}Дамерау \\ Левенштейн\end{tabular}}} \\ \cline{3-5}
+\multicolumn{1}{|c|}{} &  & \multicolumn{1}{c|}{\textbf{Итер.}} & \multicolumn{1}{c|}{\textbf{Рекурс.}} & \multicolumn{1}{c|}{\textbf{\begin{tabular}[c]{@{}c@{}}Рекурс.\\ с мемоиз.\end{tabular}}} &  \\ \hline
+\multicolumn{1}{|c|}{а} & а & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & 0 \\ \hline
+\multicolumn{1}{|c|}{а} & б & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & 1 \\ \hline
+\multicolumn{1}{|c|}{вход} & вдох & \multicolumn{1}{c|}{2} & \multicolumn{1}{c|}{2} & \multicolumn{1}{c|}{2} & 2 \\ \hline
+\multicolumn{1}{|c|}{кошка} & собака & \multicolumn{1}{c|}{3} & \multicolumn{1}{c|}{3} & \multicolumn{1}{c|}{3} & 3 \\ \hline
+\multicolumn{1}{|c|}{абвгд} & авбдг & \multicolumn{1}{c|}{3} & \multicolumn{1}{c|}{3} & \multicolumn{1}{c|}{3} & 2 \\ \hline
+\multicolumn{1}{|c|}{трон} & ртопа & \multicolumn{1}{c|}{4} & \multicolumn{1}{c|}{4} & \multicolumn{1}{c|}{4} & 3 \\ \hline
+\multicolumn{1}{|c|}{пример} & примеры & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & 1 \\ \hline
+\end{tabular}
+\end{table}

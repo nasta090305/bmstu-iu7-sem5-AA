@@ -1,0 +1,86 @@
+\chapter{Аналитический раздел}\label{ch:analysis}
+
+\section{Определение матрицы}
+
+\textbf{Матрицей} ~\cite{matrix} называют таблицу чисел $a_{ik}$ вида
+\begin{equation}
+	\begin{pmatrix}
+		a_{11} & a_{12} & \ldots & a_{1n}\\
+		a_{21} & a_{22} & \ldots & a_{2n}\\
+		\vdots & \vdots & \ddots & \vdots\\
+		a_{m1} & a_{m2} & \ldots & a_{mn}
+	\end{pmatrix},
+\end{equation}
+
+состоящую из $m$ строк и $n$ столбцов.
+
+Пусть $A$ -- матрица, тогда $A_{i,j}$ -- элемент этой матрицы, который находится на \textit{i-ой} строке и \textit{j-ом} столбце.
+
+\section{Классический алгоритм умножения матриц}
+Пусть даны две матрицы
+
+\begin{equation}
+	A_{lm} = \begin{pmatrix}
+		a_{11} & a_{12} & \ldots & a_{1m}\\
+		a_{21} & a_{22} & \ldots & a_{2m}\\
+		\vdots & \vdots & \ddots & \vdots\\
+		a_{l1} & a_{l2} & \ldots & a_{lm}
+	\end{pmatrix},
+	\quad
+	B_{mn} = \begin{pmatrix}
+		b_{11} & b_{12} & \ldots & b_{1n}\\
+		b_{21} & b_{22} & \ldots & b_{2n}\\
+		\vdots & \vdots & \ddots & \vdots\\
+		b_{m1} & b_{m2} & \ldots & b_{mn}
+	\end{pmatrix},
+\end{equation}
+
+тогда матрица $C$
+\begin{equation}
+	C_{ln} = \begin{pmatrix}
+		c_{11} & c_{12} & \ldots & c_{1n}\\
+		c_{21} & c_{22} & \ldots & c_{2n}\\
+		\vdots & \vdots & \ddots & \vdots\\
+		c_{l1} & c_{l2} & \ldots & c_{ln}
+	\end{pmatrix},
+\end{equation}
+
+где
+\begin{equation}
+	\label{eq:M}
+	c_{ij} =
+	\sum_{r=1}^{m} a_{ir}b_{rj} \quad (i=\overline{1,l}; j=\overline{1,n})
+\end{equation}
+
+будет называться произведением матриц $A$ и $B$.
+
+Классический алгоритм умножения матриц реализует эту формулу.
+
+\section{Алгоритм Винограда}
+
+Алгоритм Винограда ~\cite{winograd} - алгоритм умножения матриц, основанный на приведенных ниже рассуждениях.
+
+Пусть есть два вектора $V = (v1, v2, v3, v4)$ и $W = (w1, w2, w3, w4)$.  
+
+Их скалярное произведение равно ~(\ref{form:vec_mul}) 
+
+\begin{equation} \label{form:vec_mul}
+V \cdot W=v_1 \cdot w_1 + v_2 \cdot w_2 + v_3 \cdot w_3 + v_4 \cdot w_4
+\end{equation}
+
+Равенство ~(\ref{form:vec_mul}) можно переписать в виде ~(\ref{form:vino_mul}) 
+\begin{equation} \label{form:vino_mul}
+V \cdot W=(v_1 + w_2) \cdot (v_2 + w_1) + (v_3 + w_4) \cdot (v_4 + w_3) - v_1 \cdot v_2 - v_3 \cdot v_4 - w_1 \cdot w_2 - w_3 \cdot w_4
+\end{equation}
+
+Выражение в правой части формулы ~(\ref{form:vino_mul}) допускает предварительную обработку: его части можно вычислить заранее и запомнить для каждой строки первой матрицы и для каждого столбца второй, что позволяет выполнять для каждого элемента лишь первые два умножения и последующие пять сложений, а также дополнительно два сложения. При нечетном значении размера матрицы нужно дополнительно добавить произведения крайних элементов соответствующих строк и столбцов к результату. 
+
+\section{Оптимизации алгоритма Винограда}
+
+В рассмотренный выше алгоритм Винограда при программной реализации можно внести следующие оптимизации:
+
+\begin{enumerate}
+    \item инкремент счётчика наиболее вложенного цикла на 2; 
+    \item объединение III и IV частей алгоритма Винограда; 
+    \item введение декремента при вычислении вспомогательных массивов.
+\end{enumerate}

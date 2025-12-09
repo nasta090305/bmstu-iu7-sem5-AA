@@ -1,0 +1,73 @@
+\chapter{Технологический раздел}\label{ch:tech}
+
+\section{Требования к программе}
+
+К программе предъявлены следующие требования:
+
+\begin{itemize}
+        \item на вход подаются две матрицы и их размеры;
+        \item результатом работы программы является матрица;
+	\item необходимо наличие пользовательского интерфейса для выбора действий и алгоритма работы;
+	\item необходимо наличие замера процессорного времени работы реализованных алгоритмов умножения матриц.
+\end{itemize}
+
+\section{Средства реализации}
+
+Для реализации данной лабораторной был выбран язык Python ~\cite{python}, так как он содержит все необходимые для реализаций алгоритмов инструменты и имеет модуль utime() ~\cite{python_utime} для замеров времени.
+Для замеров времени используется функция ticks\_us() из модуля utime().
+
+\section{Программные модули}
+
+Программа разбита на следующие модули:
+
+\begin{itemize}
+    \item \textbf{main.py} --- модуль, реализующий пользовательский интерфейс;
+    \item \textbf{funcs.py} --- модуль содержит функции умножения, ввода и вывода матриц;
+    \item \textbf{tests.py} --- модуль для проведения функционального тестирования;
+    \item \textbf{time\_mes.py} --- модуль, реализующий замеры времени;
+    \item \textbf{graph.py} --- модуль для графического отображения полученных замеров времени.
+\end{itemize}
+
+\section{Реализация алгоритмов}
+
+Реализации алгоритмов представлены в листингах ~\ref{lst:standart.py} --- ~\ref{lst:opt_winograd.py}
+
+\clearpage
+
+\includelisting
+{standart.py}
+{Классический алгоритм умножения матриц}
+
+\clearpage
+
+\includelisting
+{winograd.py}
+{Алгоритм Винограда}
+
+\clearpage
+
+\includelisting
+{opt_winograd.py}
+{Оптимизированный алгоритм Винограда}
+
+\clearpage
+
+\section{Функциональные тесты}
+
+Функциональные тесты приведены в таблице ~\ref{table:tests} и были пройдены успешно всеми алгоритмами.
+
+\begin{table}[h]
+\centering
+\caption{Функциональные тесты}
+\label{table:tests}
+\begin{tabular}{|cc|c|}
+\hline
+\multicolumn{2}{|c|}{\textbf{Входные данные}} & \multirow{2}{*}{\textbf{\begin{tabular}[c]{@{}c@{}}Ожидаемый результат\end{tabular}}} \\ \cline{1-2}
+\multicolumn{1}{|c|}{\textbf{Матрица А}} & \textbf{Матрица В} &  \\ \hline
+\multicolumn{1}{|c|}{$\begin{pmatrix} 2 \end{pmatrix}$} & $\begin{pmatrix} 3 \end{pmatrix}$ & $\begin{pmatrix} 6 \end{pmatrix}$ \\ \hline
+\multicolumn{1}{|c|}{\begin{tabular}[c]{@{}c@{}}$\begin{pmatrix} 1 & 2\\ 3 & 4 \end{pmatrix}$\end{tabular}} & \begin{tabular}[c]{@{}c@{}}$\begin{pmatrix} 5 & 6\\ 7 & 8 \end{pmatrix}$\end{tabular} & \begin{tabular}[c]{@{}c@{}}$\begin{pmatrix} 19 & 22\\ 43 & 50 \end{pmatrix}$\end{tabular} \\ \hline
+\multicolumn{1}{|c|}{$\begin{pmatrix} 1 2 3 \end{pmatrix}$} & \begin{tabular}[c]{@{}c@{}}$\begin{pmatrix} 0 & 6\\ -9 & 5\\ -8 & 7 \end{pmatrix}$\end{tabular} & $\begin{pmatrix} -42 & 37 \end{pmatrix}$ \\ \hline
+\multicolumn{1}{|c|}{$\begin{pmatrix} 1 2 3 \end{pmatrix}$} & \begin{tabular}[c]{@{}c@{}}$\begin{pmatrix} 0 & 6\\ -9 & 5\end{pmatrix}$\end{tabular} & None \\ \hline
+\multicolumn{1}{|c|}{$\begin{pmatrix} 1 2 3 \end{pmatrix}$} & $\begin{pmatrix} & \end{pmatrix}$ & None \\ \hline
+\end{tabular}
+\end{table}

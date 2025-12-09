@@ -1,0 +1,220 @@
+\chapter{Конструкторский раздел}\label{ch:design}
+
+\section{Проектирование алгоритмов}
+
+Были разработаны алгоритмы умножения матриц, представленные на рисунках ~\ref{img:standart} --- ~\ref{img:opt_winograd}
+
+\clearpage
+
+\includeimage
+    {standart} % Имя файла без расширения (файл должен быть расположен в директории inc/img/)
+    {f} % Обтекание (без обтекания)
+    {t!} % Положение рисунка (см. figure из пакета float)
+    {0.62\textwidth} % Ширина рисунка
+    {Стандартный алгоритм умножения матриц} % Подпись рисунка
+
+\clearpage
+
+\includeimage
+    {winograd}
+    {f}
+    {t!}
+    {0.95\textwidth}
+    {Алгоритм Винограда}
+
+\clearpage
+
+\includeimage
+    {opt_winograd}
+    {f}
+    {H}
+    {0.95\textwidth}
+    {Оптимизированный алгоритм Винограда}
+
+\clearpage
+
+\section{Модель вычислений для проведения оценки трудоёмкости}
+
+Ниже описана модель вычислений, которая потребуется для определения трудоёмкости каждого отдельного взятого алгоритма сортировки.
+\begin{enumerate}[label={\arabic*.}]
+	\item Трудоёмкость базовых операций:
+	\begin{itemize}[label=---]
+		\item равна 1 для операций в списке ~(\ref{for:operations_1});
+		\begin{equation}
+			\label{for:operations_1}
+			\begin{gathered}
+				+, -, =, +=, -=, ==, !=, <, >, <=, >=, [], ++, {-}-,\\
+				\&\&, >>, <<, ||, \&, |;
+			\end{gathered}
+		\end{equation}
+		\item равна 2 для операций в списке ~(\ref{for:operations_2}).
+		\begin{equation}
+			\label{for:operations_2}
+			*, /, \%, *=, /=, \%=.
+		\end{equation}
+	\end{itemize}
+	\item Трудоёмкость условного оператора описана в формуле ~(\ref{for:if}).
+	\begin{equation}
+		\label{for:if}
+		f_{if} = f_{\text{условия}} + 
+		\begin{cases}
+			min(f_1, f_2), & \text{лучший случай}\\
+			max(f_1, f_2), & \text{худший случай}
+		\end{cases}
+	\end{equation}
+	\item Трудоёмкость цикла описана в формуле ~(\ref{for:for}).
+	\begin{equation}
+		\label{for:for}
+		\begin{gathered}
+			f_{for} = f_{\text{инициализация}} + f_{\text{сравнения}} + M_{\text{итераций}} \cdot (f_{\text{тело}} +\\
+			+ f_{\text{инкремент}} + f_{\text{сравнения}})
+		\end{gathered}
+	\end{equation}
+	\item Трудоёмкость передачи параметра в функции и возврат из функции равны 0.
+\end{enumerate}
+
+\section{Трудоёмкость классического алгоритма умножения матриц}
+
+Для стандартного алгоритма умножения матриц для матрицы А размером $N \cdot M$ и матрицы В размером $M \cdot T$ трудоёмкость будет слагаться из:
+
+\begin{itemize}
+	\item трудоёмкости внешнего цикла по $i \in [1 \ldots N]$ , которая равна: $f = 2 + N \cdot (2 + f_{body})$;
+	\item трудоёмкости цикла по $j \in [1 \ldots T]$ , которая равна: $f = 2 + 2 + T \cdot (2 + f_{body})$;
+	\item трудоёмкости цикла по $k \in [1 \ldots M]$ , которая равна: $f = 2 + 2 + 14M$.
+\end{itemize}
+
+Поскольку трудоёмкость стандартного алгоритма равна трудоёмкости внешнего цикла, то:
+\begin{equation}
+	\label{сompl:standart}
+	\begin{gathered}
+		f_{standart} = 2 + N \cdot (2 + 2 + T \cdot (2 + 2 + M \cdot (2 + 8 + 1 + 1 + 2)))= \\
+		= 2 + 4N + 4NT + 14NMT \approx 14NMT = O(N^3)
+	\end{gathered}
+\end{equation}
+
+\section{Трудоёмкость алгоритма Винограда}
+
+Для алгоритма Винограда для матрицы А размером $N \cdot M$ и матрицы В размером $M \cdot T$ трудоёмкость будет слагаться из:
+
+\begin{itemize}
+	\item трудоёмкости создания и инициализации массивов $mulh$ и $mulv$, которая указана в формуле ~(\ref{сompl:v_init});
+	\begin{equation}
+		\label{сompl:v_init}
+		f_{init} = N + M
+	\end{equation}
+	\item трудоёмкости заполнения массива $mulh$, которая указана в формуле ~(\ref{сompl:v_mulh});
+	\begin{equation}
+		\label{сompl:v_mulh}
+		\begin{gathered}
+			f_{mulh} = 2 + N \cdot (4 + \frac{M}{2} \cdot (4 + 6 + 1 + 2 + 3 \cdot 2)) = \\
+			= 2 + 4N + \frac{19NM}{2} = 2 + 4N + 9,5NM
+		\end{gathered} 
+	\end{equation}
+	\item трудоёмкости заполнения массива $mulv$, которая указана в формуле ~(\ref{сompl:v_mulv});
+	\begin{equation}
+		\label{сompl:v_mulv}
+		\begin{gathered}
+			f_{mulv} = 2 + T \cdot (4 + \frac{M}{2} \cdot (4 + 6 + 1 + 2 + 3 \cdot 2)) = \\
+			= 2 + 4T + \frac{19TM}{2} = 2 + 4T + 9,5TM
+		\end{gathered}  
+	\end{equation}
+	\item трудоёмкости цикла заполнения для чётных размеров, которая указана в формуле ~(\ref{сompl:v_cycle});
+	\begin{equation}
+		\label{сompl:v_cycle}
+		\begin{gathered}
+			f_{cycle} = 2 + N \cdot (4 + T \cdot (2 + 7 + 4 + \frac{M}{2} \cdot (4 + 28))) = \\
+			= 2 + 4N + 13NT + \frac{32NTM}{2}  = 2 + 4N + 13NT + 16NTM 
+		\end{gathered}
+	\end{equation}
+	\item трудоёмкости цикла, который дополнительно нужен для подсчёта значений при нечётном размере матрицы, которая указана в формуле ~(\ref{сompl:v_parity});
+	\begin{equation}
+		\label{сompl:v_parity}
+		\begin{gathered}
+			f_{parity} = 3 + 
+			\begin{cases}
+				0, & \text{чётная} \\
+				2 + N \cdot (4 + T \cdot (2 + 14)), & \text{иначе}
+			\end{cases}
+		\end{gathered}  
+	\end{equation}
+\end{itemize}
+
+Тогда для худшего случая (нечётный общий размер матриц):
+\begin{equation}
+	\label{сompl:v_worst}
+	\begin{gathered}
+		f_{worst} = f_{init} + f_{mulh} + f_{mulv} + f_{cycle} + f_{parity} \approx 16NMT = O(N^3)
+	\end{gathered}
+\end{equation}
+
+Для лучшего случая (чётный общий размер матриц):
+\begin{equation}
+	\label{сompl:v_best}
+	\begin{gathered}
+		f_{best} = f_{init} + f_{mulh} + f_{mulv} + f_{cycle} + f_{parity} \approx 16NMT = O(N^3)
+	\end{gathered}
+\end{equation}
+
+\section{Трудоёмкость оптимизированного алгоритма Винограда}
+
+Для оптимизированного алгоритма Винограда для матрицы А размером $N \cdot M$ и матрицы В размером $M \cdot T$ трудоёмкость будет слагаться из:
+
+\begin{itemize}
+	\item трудоёмкости создания и инициализации массивов $mulh$ и $mulv$, которая указана в формуле ~(\ref{сompl:v_init});
+	\item трудоёмкости заполнения массива $mulh$ c использованием декремента, которая указана в формуле ~(\ref{сompl:opt_mulh});
+	\begin{equation}
+		\label{сompl:opt_mulh}
+		\begin{gathered}
+			f_{mulh} = 2 + N \cdot (4 + \frac{M}{2} \cdot (4 + 5 + 1 + 1 + 3 \cdot 2)) = \\
+			= 2 + 4N + \frac{17NM}{2} = 2 + 4N + 8,5NM
+		\end{gathered} 
+	\end{equation}
+	\item трудоёмкости заполнения массива $mulv$ с использованием декремента, которая указана в формуле ~(\ref{сompl:opt_mulv});
+	\begin{equation}
+		\label{сompl:opt_mulv}
+		\begin{gathered}
+			f_{mulv} = 2 + T \cdot (4 + \frac{M}{2} \cdot (4 + 5 + 1 + 1 + 3 \cdot 2)) = \\
+			= 2 + 4T + \frac{17TM}{2} = 2 + 4T + 8,5TM
+		\end{gathered}  
+	\end{equation}
+	\item трудоёмкости проверки четности и циклов заполнения для чётных и нечетных размеров с инкрементом на 2, которые указаны в формулах ~(\ref{сompl:opt_parity}), ~(\ref{сompl:even_cycle}) и ~(\ref{сompl:odd_cycle}) соответственно;
+        \begin{equation}
+		\label{сompl:opt_parity}
+		\begin{gathered}
+			f_{parity} = 3 + 
+			\begin{cases}
+				f_{even\_cycle}, & \text{чётная} \\
+				f_{odd\_cycle}, & \text{иначе}
+			\end{cases}
+		\end{gathered}  
+	\end{equation}
+        \begin{equation}
+		\label{сompl:even_cycle}
+		\begin{gathered}
+			f_{even\_cycle} = 2 + N \cdot (2 + T \cdot (2 + 6 + 2 + \frac{M}{2} \cdot (2 + 12 + 5 + 1 + 2))) = \\
+			= 2 + 2N + 10NT + \frac{22NTM}{2}  = 2 + 2N + 10NT + 11NTM 
+		\end{gathered}
+	\end{equation}
+	\begin{equation}
+		\label{сompl:odd_cycle}
+		\begin{gathered}
+			f_{odd\_cycle} = 2 + N \cdot (2 + T \cdot (2 + 6 + 2 + \frac{M}{2} \cdot (2 + 12 + 5 + 1 + 2) + 8 + \\ + 1 + 3 + 2)) = 2 + 2N + 24NT + \frac{22NTM}{2}  = 2 + 2N + 24NT + 11NTM 
+		\end{gathered}
+	\end{equation}
+\end{itemize}
+
+Тогда для худшего случая (нечётный общий размер матриц):
+\begin{equation}
+	\label{сompl:vinograd_worst}
+	\begin{gathered}
+		f_{worst} = f_{init} + f_{mulh} + f_{mulv} + f_{parity} =\\= f_{init} + f_{mulh} + f_{mulv} + f_{cycle} + f_{odd\_cycle} \approx 11NMT = O(N^3)
+	\end{gathered}
+\end{equation}
+
+Для лучшего случая (чётный общий размер матриц):
+\begin{equation}
+	\label{сompl:vinograd_best}
+	\begin{gathered}
+		f_{best} = f_{init} + f_{mulh} + f_{mulv} + f_{parity} =\\= f_{init} + f_{mulh} + f_{mulv} + f_{cycle} + f_{even\_cycle} \approx 11NMT = O(N^3)
+	\end{gathered}
+\end{equation}
