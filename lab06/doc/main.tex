@@ -1,0 +1,89 @@
+% Preamble
+\PassOptionsToPackage{a4paper}{geometry}
+
+\documentclass{bmstu}
+
+% пакеты
+\usepackage{csquotes}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{biblatex}
+
+% скобки после пунктов
+\setenumerate[1]{label={ \arabic*)}}
+\usepackage{enumitem}
+
+% математика в листингах
+\lstset{
+mathescape=true
+}
+
+% \FloatBarrier
+\usepackage{placeins}
+
+% $ в листингах
+\newcommand{\dlr}{\mbox{\textdollar}}
+
+% Тире в itemize
+\renewcommand\labelitemi{---}
+
+% \foreach
+% \usepackage{pgffor}
+
+% Длинные таблицы
+\usepackage{longtable}
+\usepackage{multirow}
+\usepackage{threeparttable}
+
+% Картинки
+\newcommand{\img}[3] {
+\begin{figure}[t!]
+    \center{\includegraphics[height=#1]{inc/img/#2}}
+    \caption{#3}
+    \label{img:#2}
+\end{figure}
+}
+\newcommand{\imgw}[3] {
+\begin{figure}[h!]
+    \center{\includegraphics[width=#1]{inc/img/#2}}
+    \caption{#3}
+    \label{img:#2}
+\end{figure}
+}
+\newcommand{\boximg}[3] {
+\begin{figure}[h]
+    \center{\fbox{\includegraphics[height=#1]{inc/img/#2}}}
+    \caption{#3}
+    \label{img:#2}
+\end{figure}
+}
+
+\addbibresource{biblio.bib}
+
+% Document
+\begin{document}
+
+    \makereporttitle
+    {Информатика и системы управления} % Название факультета
+    {Программное обеспечение ЭВМ и информационные технологии} % Название кафедры
+    {Лабораторной работе №~6} % О чем отчет
+    {Анализ алгоритмов} % Предмет
+    {Методы решения задачи коммивояжёра} % Тема
+    {10141} % Вариант
+    {Александрова~А.~Д./ИУ7-56Б}
+    {Волкова~Л.~Л.}
+
+    \maketableofcontents
+
+    \include{1-introduction}
+    \include{2-analysis}
+    \include{3-design}
+    \include{4-tech}
+    \include{5-research}
+    \include{6-conclusion}
+    
+    \makebibliography
+
+    \include{7-additional}
+    
+\end{document}

@@ -1,0 +1,200 @@
+82161007858600 : task 1 started generation process
+82161007874400 : task 1 added in first queue
+82161007881200 : task 1 started reading process
+82161007920400 : task 2 started generation process
+82161007924700 : task 2 added in first queue
+82161007962300 : task 3 started generation process
+82161007966600 : task 3 added in first queue
+82161007991400 : task 4 started generation process
+82161007996000 : task 4 added in first queue
+82161008024800 : task 5 started generation process
+82161008029500 : task 5 added in first queue
+82161008055400 : task 6 started generation process
+82161008063100 : task 6 added in first queue
+82161008104100 : task 7 started generation process
+82161008108700 : task 7 added in first queue
+82161008137800 : task 8 started generation process
+82161008142300 : task 8 added in first queue
+82161008167300 : task 9 started generation process
+82161008176300 : task 9 added in first queue
+82161008198300 : task 10 started generation process
+82161008202900 : task 10 added in first queue
+82161008228600 : task 11 started generation process
+82161008233000 : task 11 added in first queue
+82161008285000 : task 12 started generation process
+82161008290600 : task 12 added in first queue
+82161008326000 : task 13 started generation process
+82161008330700 : task 13 added in first queue
+82161008366200 : task 14 started generation process
+82161008385500 : task 14 added in first queue
+82161008406700 : task 15 started generation process
+82161008411100 : task 15 added in first queue
+82161008432500 : task 16 started generation process
+82161008436800 : task 16 added in first queue
+82161008458100 : task 17 started generation process
+82161008467000 : task 17 added in first queue
+82161008488300 : task 18 started generation process
+82161008492800 : task 18 added in first queue
+82161008514500 : task 19 started generation process
+82161008518900 : task 19 added in first queue
+82161008560400 : task 20 started generation process
+82161008564900 : task 20 added in first queue
+82162730992500 : task 1 added in second queue
+82162730995400 : task 2 started reading process
+82162730997800 : task 1 started extraction process
+82164386385200 : task 2 added in second queue
+82164386388100 : task 3 started reading process
+82165500612700 : task 1 added in third queue
+82165500615400 : task 2 started extraction process
+82165500633600 : task 1 started writing process
+82165671599600 : task 1 added in forth queue
+82165671605400 : task 1 started destruction process
+82165671608300 : task 1 ended destruction process
+82167846135000 : task 3 added in second queue
+82167846141200 : task 4 started reading process
+82168392117100 : task 2 added in third queue
+82168392123100 : task 3 started extraction process
+82168392123400 : task 2 started writing process
+82168451545100 : task 2 added in forth queue
+82168451566300 : task 2 started destruction process
+82168451569500 : task 2 ended destruction process
+82170136476300 : task 4 added in second queue
+82170136479800 : task 5 started reading process
+82171082738000 : task 3 added in third queue
+82171082740700 : task 4 started extraction process
+82171082742800 : task 3 started writing process
+82171153148400 : task 3 added in forth queue
+82171153156300 : task 3 started destruction process
+82171153159200 : task 3 ended destruction process
+82171155799600 : task 5 added in second queue
+82171155802500 : task 6 started reading process
+82171622346500 : task 6 added in second queue
+82171622349700 : task 7 started reading process
+82173627774200 : task 7 added in second queue
+82173627777400 : task 8 started reading process
+82173730210300 : task 4 added in third queue
+82173730213100 : task 5 started extraction process
+82173730214000 : task 4 started writing process
+82173899006700 : task 4 added in forth queue
+82173899011600 : task 4 started destruction process
+82173899014100 : task 4 ended destruction process
+82176510068800 : task 8 added in second queue
+82176510072300 : task 9 started reading process
+82176659853900 : task 5 added in third queue
+82176659856000 : task 6 started extraction process
+82176659857800 : task 5 started writing process
+82176733899100 : task 5 added in forth queue
+82176733905200 : task 5 started destruction process
+82176733908100 : task 5 ended destruction process
+82178085051400 : task 9 added in second queue
+82178085056000 : task 10 started reading process
+82179417806400 : task 6 added in third queue
+82179417809300 : task 7 started extraction process
+82179417811000 : task 6 started writing process
+82179480726100 : task 6 added in forth queue
+82179480733800 : task 6 started destruction process
+82179480737900 : task 6 ended destruction process
+82180237526800 : task 10 added in second queue
+82180237529800 : task 11 started reading process
+82182020002900 : task 7 added in third queue
+82182020006000 : task 8 started extraction process
+82182020008200 : task 7 started writing process
+82182081886600 : task 7 added in forth queue
+82182081891500 : task 7 started destruction process
+82182081893900 : task 7 ended destruction process
+82182339053000 : task 11 added in second queue
+82182339056100 : task 12 started reading process
+82183379135700 : task 12 added in second queue
+82183379139300 : task 13 started reading process
+82184759645400 : task 8 added in third queue
+82184759647900 : task 9 started extraction process
+82184759650200 : task 8 started writing process
+82184820214800 : task 8 added in forth queue
+82184820219900 : task 8 started destruction process
+82184820222200 : task 8 ended destruction process
+82184837146600 : task 13 added in second queue
+82184837149400 : task 14 started reading process
+82186689129300 : task 14 added in second queue
+82186689133300 : task 15 started reading process
+82187447512900 : task 9 added in third queue
+82187447515300 : task 10 started extraction process
+82187447517800 : task 9 started writing process
+82187513025000 : task 9 added in forth queue
+82187513067100 : task 9 started destruction process
+82187513072600 : task 9 ended destruction process
+82188429644000 : task 15 added in second queue
+82188429647400 : task 16 started reading process
+82190548043500 : task 10 added in third queue
+82190548047600 : task 11 started extraction process
+82190548052700 : task 10 started writing process
+82190615082500 : task 10 added in forth queue
+82190615090700 : task 10 started destruction process
+82190615094500 : task 10 ended destruction process
+82191385675200 : task 16 added in second queue
+82191385678200 : task 17 started reading process
+82193223149000 : task 11 added in third queue
+82193223151900 : task 12 started extraction process
+82193223153700 : task 11 started writing process
+82193326648600 : task 11 added in forth queue
+82193326653700 : task 11 started destruction process
+82193326656100 : task 11 ended destruction process
+82194809094400 : task 17 added in second queue
+82194809097700 : task 18 started reading process
+82195928847200 : task 12 added in third queue
+82195928850100 : task 13 started extraction process
+82195928851900 : task 12 started writing process
+82195996995000 : task 12 added in forth queue
+82195997102100 : task 12 started destruction process
+82195997105700 : task 12 ended destruction process
+82198677684900 : task 13 added in third queue
+82198677687400 : task 14 started extraction process
+82198677689700 : task 13 started writing process
+82198744216200 : task 13 added in forth queue
+82198744232900 : task 13 started destruction process
+82198744235400 : task 13 ended destruction process
+82198904899800 : task 18 added in second queue
+82198904906900 : task 19 started reading process
+82201124689400 : task 14 added in third queue
+82201124692900 : task 15 started extraction process
+82201124694500 : task 14 started writing process
+82201215309300 : task 14 added in forth queue
+82201215314400 : task 14 started destruction process
+82201215317000 : task 14 ended destruction process
+82201229681600 : task 19 added in second queue
+82201229685700 : task 20 started reading process
+82202143355400 : task 20 added in second queue
+82203768797300 : task 15 added in third queue
+82203768799900 : task 16 started extraction process
+82203768804200 : task 15 started writing process
+82203828502500 : task 15 added in forth queue
+82203828508200 : task 15 started destruction process
+82203828510300 : task 15 ended destruction process
+82206294390700 : task 16 added in third queue
+82206294393200 : task 17 started extraction process
+82206294395300 : task 16 started writing process
+82206351833200 : task 16 added in forth queue
+82206351842500 : task 16 started destruction process
+82206351846900 : task 16 ended destruction process
+82208893617200 : task 17 added in third queue
+82208893619600 : task 18 started extraction process
+82208893621000 : task 17 started writing process
+82208954922400 : task 17 added in forth queue
+82208954930200 : task 17 started destruction process
+82208954933900 : task 17 ended destruction process
+82211582285300 : task 18 added in third queue
+82211582288100 : task 19 started extraction process
+82211582291800 : task 18 started writing process
+82211647211000 : task 18 added in forth queue
+82211647228400 : task 18 started destruction process
+82211647232400 : task 18 ended destruction process
+82214070010100 : task 19 added in third queue
+82214070013500 : task 20 started extraction process
+82214070013900 : task 19 started writing process
+82214127319900 : task 19 added in forth queue
+82214127327500 : task 19 started destruction process
+82214127331400 : task 19 ended destruction process
+82216672606400 : task 20 added in third queue
+82216672614800 : task 20 started writing process
+82216734742700 : task 20 added in forth queue
+82216734808400 : task 20 started destruction process
+82216734813500 : task 20 ended destruction process
